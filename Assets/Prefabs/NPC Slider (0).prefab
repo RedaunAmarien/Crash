@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 823279278069096400}
   - component: {fileID: 823279278069096403}
-  - component: {fileID: 1089348699914374933}
-  - component: {fileID: 8986191189041145029}
+  - component: {fileID: 8302175505696125935}
+  - component: {fileID: 2446755840271616010}
   m_Layer: 0
   m_Name: NPC Slider (0)
   m_TagString: Untagged
@@ -84,7 +84,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1089348699914374933
+--- !u!114 &8302175505696125935
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -93,38 +93,37 @@ MonoBehaviour:
   m_GameObject: {fileID: 823279278069096402}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d55d8046f99f2814ca05983a0b13fb7f, type: 3}
+  m_Script: {fileID: 11500000, guid: 039c3c12e6f23da48b7b52ff1b906e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  allNPC:
+  - {fileID: 2521357280396474186, guid: d833d300bdbb87a4ebb8545e708dbe31, type: 3}
+  - {fileID: 493879367793262748, guid: 5d215ecb6bc33914582c3e0b221e442a, type: 3}
+  - {fileID: 4869828702606336213, guid: 142d8e8b1cab1954fbf9bbea9ddb8f81, type: 3}
+  - {fileID: 7185082828394725400, guid: 3e39fed9ad38cc247abb768e0071bfe4, type: 3}
+  - {fileID: 775798112116043479, guid: 4d26d4175fc784f43aad57bfa5ebb173, type: 3}
+  - {fileID: 4172309555225792657, guid: 9620015296f70e64fa3a245b5daad188, type: 3}
+  - {fileID: 858185786359020160, guid: d01fd09b86521d441879100aea4a74a7, type: 3}
+  - {fileID: 3023190443564627065, guid: 0895558062ae73a40b2cdd8e3a1702c8, type: 3}
+  - {fileID: 8427243500569028271, guid: 6bdeecf3aeb20c147b3866d505321af8, type: 3}
+  - {fileID: 4938583287722480200, guid: 2dea0d829a683654da588db02c37851b, type: 3}
+  - {fileID: 7575676879910182579, guid: 453bae128fd1f1d42959737827b291ef, type: 3}
+  - {fileID: 3523406308603108629, guid: a211d359a4cdab844a6806bb93ee1d51, type: 3}
+  charIndex: 0
+  charName: Undefined
   forceAdd: {x: 0, y: 0}
   forceMult: {x: 1, y: 1}
   specialForceAdd: {x: 0, y: 0}
-  specialForceMult: {x: 0, y: 0}
+  specialForceMult: {x: 1, y: 1}
+  timeSpeed: 0.1
+  timeDura: 0.5
+  timeSpeedSpecial: 0.01
+  timeDuraSpecial: 0.75
   phantom: 0
-  charName: 
   charSprite: {fileID: 0}
-  charSpriteList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   charSpriteHead: {fileID: 0}
-  charSpriteHeadList:
-  - {fileID: -7113721699294284259, guid: d3694dae1ce85af488fd288d13c646bd, type: 3}
-  - {fileID: 6852838477719044827, guid: d3694dae1ce85af488fd288d13c646bd, type: 3}
-  - {fileID: -633800051379554394, guid: d3694dae1ce85af488fd288d13c646bd, type: 3}
-  - {fileID: 8747917179953127746, guid: d3694dae1ce85af488fd288d13c646bd, type: 3}
-  - {fileID: 1654053513967141243, guid: 9304db7ba23c4be40b4e76cba966b06b, type: 3}
-  - {fileID: 1146357360114483764, guid: 9304db7ba23c4be40b4e76cba966b06b, type: 3}
-  - {fileID: -6838306152264049014, guid: 9304db7ba23c4be40b4e76cba966b06b, type: 3}
-  - {fileID: -1286370128228601580, guid: 9304db7ba23c4be40b4e76cba966b06b, type: 3}
-  charIndex: 0
   charColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!70 &8986191189041145029
+--- !u!70 &2446755840271616010
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

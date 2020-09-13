@@ -38,7 +38,7 @@ public class NPCRoulette : MonoBehaviour {
             else npcOrder[3] = i;
         }
         for (int i = 0; i < 3; i++) {
-            rouletteImage[i].GetComponent<Image>().sprite = npcSlider[npcOrder[i]].GetComponent<NPCInfo>().charSpriteHead;
+            rouletteImage[i].GetComponent<Image>().sprite = npcSlider[npcOrder[i]].GetComponent<NPCSlider>().charSpriteHead;
             rouletteImage[i].GetComponent<LineRenderer>().SetPosition(0, rouletteImage[i].transform.position);
             rouletteImage[i].GetComponent<LineRenderer>().SetPosition(1, Vector3.Lerp(rouletteImage[i].transform.position, npcSlider[npcOrder[i]].transform.position, tailLength));
         }
