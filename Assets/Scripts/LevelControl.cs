@@ -26,8 +26,11 @@ public class LevelControl : MonoBehaviour
     [Range(0, 1)]
     public float downForcePercent;
     public float specialTimer;
-    [Range(-1, 2)]
-    public int difficulty;
+    public enum Difficulty
+    {
+        Easy, Medium, Hard, Custom
+    };
+    public Difficulty difficulty;
 
     [Header("Inputs: Easy")]
     public float angleSpeedEasy;
@@ -142,11 +145,11 @@ public class LevelControl : MonoBehaviour
 
         //===> Insert Main Menu stuff HERE <===
         
-        if (difficulty == 0) {
+        if (difficulty == Difficulty.Easy) {
             upForceCount = upForceCountEasy;
             specialTimer = specialTimeEasy;
         }
-        else if (difficulty == 1) {
+        else if (difficulty == Difficulty.Medium) {
             upForceCount = upForceCountNormal;
             specialTimer = specialTimeNormal;
         }
@@ -442,8 +445,8 @@ public class LevelControl : MonoBehaviour
             }
             distance += vel.x/60*timeScale;
             if (player.transform.position.y > clickRangeMin && player.transform.position.y < clickRangeMax) {
-                if (difficulty == 0) downForcePercent += rechargeEasy*timeScale;
-                else if (difficulty == 1) downForcePercent += rechargeNormal*timeScale;
+                if (difficulty == Difficulty.Easy) downForcePercent += rechargeEasy*timeScale;
+                else if (difficulty == Difficulty.Medium) downForcePercent += rechargeNormal*timeScale;
                 else downForcePercent += rechargeHard*timeScale;
                 if (downForcePercent >= 1) downForcePercent = 1;
             }
@@ -669,9 +672,9 @@ public class LevelControl : MonoBehaviour
     IEnumerator SetAngle() {
         if (chooseAngle) {
             if (!angleFalling) {
-                if (difficulty == -1) angleMeter = custom.x;
-                else if (difficulty == 0) angleMeter += angleSpeedEasy*Time.deltaTime;
-                else if (difficulty == 1) angleMeter += angleSpeedNormal*Time.deltaTime;
+                if (difficulty == Difficulty.Custom) angleMeter = custom.x;
+                else if (difficulty == Difficulty.Easy) angleMeter += angleSpeedEasy*Time.deltaTime;
+                else if (difficulty == Difficulty.Medium) angleMeter += angleSpeedNormal*Time.deltaTime;
                 else angleMeter += angleSpeedHard*Time.deltaTime;
                 if (angleMeter >= 90) {
                     angleMeter = 90;
@@ -679,9 +682,9 @@ public class LevelControl : MonoBehaviour
                 }
             }
             else {
-                if (difficulty == -1) angleMeter = custom.x;
-                else if (difficulty == 0) angleMeter -= angleSpeedEasy*Time.deltaTime;
-                else if (difficulty == 1) angleMeter -= angleSpeedNormal*Time.deltaTime;
+                if (difficulty == Difficulty.Custom) angleMeter = custom.x;
+                else if (difficulty == Difficulty.Easy) angleMeter -= angleSpeedEasy*Time.deltaTime;
+                else if (difficulty == Difficulty.Medium) angleMeter -= angleSpeedNormal*Time.deltaTime;
                 else angleMeter -= angleSpeedHard*Time.deltaTime;
                 if (angleMeter <= 0) {
                     angleMeter = 0;
@@ -697,9 +700,9 @@ public class LevelControl : MonoBehaviour
     IEnumerator SetPower() {
         if (choosePower) {
             if (!powerFalling) {
-                if (difficulty == -1) powerMeter = custom.y;
-                else if (difficulty == 0) powerMeter += powerSpeedEasy*Time.deltaTime;
-                else if (difficulty == 1) powerMeter += powerSpeedNormal*Time.deltaTime;
+                if (difficulty == Difficulty.Custom) powerMeter = custom.y;
+                else if (difficulty == Difficulty.Easy) powerMeter += powerSpeedEasy*Time.deltaTime;
+                else if (difficulty == Difficulty.Medium) powerMeter += powerSpeedNormal*Time.deltaTime;
                 else powerMeter += powerSpeedHard*Time.deltaTime;
                 if (powerMeter >= 1) {
                     powerMeter = 1;
@@ -707,9 +710,9 @@ public class LevelControl : MonoBehaviour
                 }
             }
             else {
-                if (difficulty == -1) powerMeter = custom.y;
-                else if (difficulty == 0) powerMeter -= powerSpeedEasy*Time.deltaTime;
-                else if (difficulty == 1) powerMeter -= powerSpeedNormal*Time.deltaTime;
+                if (difficulty == Difficulty.Custom) powerMeter = custom.y;
+                else if (difficulty == Difficulty.Easy) powerMeter -= powerSpeedEasy*Time.deltaTime;
+                else if (difficulty == Difficulty.Medium) powerMeter -= powerSpeedNormal*Time.deltaTime;
                 else powerMeter -= powerSpeedHard*Time.deltaTime;
                 if (powerMeter <= 0) {
                     powerMeter = 0;
