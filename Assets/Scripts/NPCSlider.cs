@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class NPCSlider : MonoBehaviour
 {
-    public NPCStats[] allNPC;
+    public CharacterInfo[] allNPCs;
     public int charIndex;
     public string charName;
     public Vector2 forceAdd, forceMult, specialForceAdd, specialForceMult;
@@ -21,18 +21,18 @@ public class NPCSlider : MonoBehaviour
     }
 
     public void ResetChar() {
-        charName            = allNPC[charIndex].charName;
-        forceAdd            = allNPC[charIndex].forceAdd;
-        forceMult           = allNPC[charIndex].forceMult;
-        specialForceAdd     = allNPC[charIndex].specialForceAdd;
-        specialForceMult    = allNPC[charIndex].specialForceMult;
-        timeSpeed           = allNPC[charIndex].timeSpeed;
-        timeDura            = allNPC[charIndex].timeDura;
-        timeSpeedSpecial    = allNPC[charIndex].timeSpeedSpecial;
-        timeDuraSpecial     = allNPC[charIndex].timeDuraSpecial;
-        phantom             = allNPC[charIndex].phantom;
-        charSprite          = allNPC[charIndex].charSprite;
-        sprRend.color       = allNPC[charIndex].charColor; //Remove when sprites are finalized.
-        charSpriteHead      = allNPC[charIndex].charSpriteHead;
+        charName            = allNPCs[charIndex].charName;
+        forceAdd            = allNPCs[charIndex].forceAdd;
+        forceMult           = allNPCs[charIndex].forceMult;
+        specialForceAdd     = allNPCs[charIndex].specialForceAdd;
+        specialForceMult    = allNPCs[charIndex].specialForceMult;
+        timeSpeed           = allNPCs[charIndex].timeSpeed;
+        timeDura            = allNPCs[charIndex].timeDura;
+        timeSpeedSpecial    = allNPCs[charIndex].timeSpeedSpecial;
+        timeDuraSpecial     = allNPCs[charIndex].timeDuraSpecial;
+        phantom             = allNPCs[charIndex].phantom;
+        charSprite          = allNPCs[charIndex].charSprite;
+        sprRend.color       = allNPCs[charIndex].charColor; //Remove when sprites are finalized.
+        charSpriteHead      = allNPCs[charIndex].charSpriteHead;
     }
 }

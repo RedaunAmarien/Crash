@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 076eafb3c84bf7941b410ecca9ff7df2, type: 3}
+  m_Name: 2
+  m_EditorClassIdentifier: 
+  charName: Lex
+  forceAdd: {x: 5, y: 5}
+  forceMult: {x: 1, y: 1}
+  specialForceAdd: {x: 17, y: 17}
+  specialForceMult: {x: 1.2, y: 1.2}
+  timeSpeed: 0.05
+  timeDura: 0.5
+  timeSpeedSpecial: 0
+  timeDuraSpecial: 0.75
+  phantom: 0
+  charSprite: {fileID: 0}
+  charSpriteHead: {fileID: -633800051379554394, guid: d3694dae1ce85af488fd288d13c646bd, type: 3}
+  charColor: {r: 0, g: 1, b: 1, a: 1}
+  charWeight: 10
