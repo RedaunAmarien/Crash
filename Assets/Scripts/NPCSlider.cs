@@ -9,14 +9,15 @@ public class NPCSlider : MonoBehaviour
     public string charName;
     public Vector2 forceAdd, forceMult, specialForceAdd, specialForceMult;
     public float timeSpeed, timeDura, timeSpeedSpecial, timeDuraSpecial;
+    public float activationRadius;
     public bool phantom;
     public Sprite charSprite;
     public Sprite charSpriteHead;
-    SpriteRenderer sprRend;
-    public Color charColor;
+    [SerializeField] SpriteRenderer sprite;
+    [SerializeField] SpriteRenderer colorBox;
+    //public Color charColor;
 
     void Start() {
-        sprRend = GetComponent<SpriteRenderer>();
         ResetChar();
     }
 
@@ -32,7 +33,14 @@ public class NPCSlider : MonoBehaviour
         timeDuraSpecial     = allNPCs[charIndex].timeDuraSpecial;
         phantom             = allNPCs[charIndex].phantom;
         charSprite          = allNPCs[charIndex].charSprite;
-        sprRend.color       = allNPCs[charIndex].charColor; //Remove when sprites are finalized.
+        //sprite.color        = allNPCs[charIndex].charColor; //Remove when sprites are finalized.
+        colorBox.color      = allNPCs[charIndex].charColor; //Remove when sprites are finalized.
         charSpriteHead      = allNPCs[charIndex].charSpriteHead;
     }
+
+    //private void OnDrawGizmos()
+    //{
+    //    Gizmos.color = allNPCs[charIndex].charColor;
+    //    Gizmos.DrawWireSphere(transform.position, activationRadius);
+    //}
 }

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076eafb3c84bf7941b410ecca9ff7df2, type: 3}
   m_Name: 10
   m_EditorClassIdentifier: 
-  charName: Creeper
+  charName: Creepo
   forceAdd: {x: 0, y: 0}
   forceMult: {x: 0.5, y: 0.5}
   specialForceAdd: {x: 0, y: 0}

@@ -25,4 +25,4 @@ MonoBehaviour:
   charSprite: {fileID: 0}
   charSpriteHead: {fileID: -6838306152264049014, guid: 9304db7ba23c4be40b4e76cba966b06b, type: 3}
   charColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
-  charWeight: 5
+  charWeight: 2

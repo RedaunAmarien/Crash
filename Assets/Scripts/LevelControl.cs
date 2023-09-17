@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 
 public class LevelControl : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class LevelControl : MonoBehaviour
     public Vector2 minVel, groundDrag, aerialForceUp, aerialForceDown;
     public float minSqrMag, distance, gravity, clickRangeMin, clickRangeMax, angle, hitAngle, maxStartPower, distToBlockSp, topSpeed;
 
-    [Header("Inputs"), Range(0, 1)]
+    [Header("Inputs")]
     public float timeScale;
     [Range(0, 90)]
     public float angleMeter;
@@ -64,8 +65,7 @@ public class LevelControl : MonoBehaviour
     // WindZone wind;
     public GameObject[] sliders;
     public List<int> currentNPC = new List<int>();
-    public GameObject[] bg1, bg2, bg3, bg4, bg5;
-    public float[] bgSpeedMult;
+    //public GameObject[] bg1, bg2, bg3, bg4, bg5;
     public Transform spawn, despawn;
 
     [Header("Audio")]
@@ -103,10 +103,13 @@ public class LevelControl : MonoBehaviour
     NPCSlider basicSlider;
     IntRange[] newRange;
     bool powerFalling;
+    private float halfCirc;
 
     void Start()
     {
         //Initialize
+        timeScale = 1.0f;
+        halfCirc = Mathf.PI * player.GetComponent<CircleCollider2D>().radius;
         specialReady = new bool[4];
         startPanel.SetActive(true);
         gameOverPanel.SetActive(false);
@@ -262,7 +265,7 @@ public class LevelControl : MonoBehaviour
                 {
                     sfx.PlayOneShot(specialPunchSFX);
                     StartCoroutine(ControlTime(info.timeSpeed, info.timeDura));
-                    vel = vel + new Vector2(50, 50);
+                    vel *= 2;
                 }
             }
             blocking = false;
@@ -424,14 +427,19 @@ public class LevelControl : MonoBehaviour
 
         //Control Character and Environment
         //Move Player
+        //vel.y -= gravity;
         vel.y -= gravity * timeScale;
+        //player.transform.Translate(new Vector2(0, vel.y / 60), Space.World);
         player.transform.Translate(new Vector2(0, vel.y / 60 * timeScale), Space.World);
-        player.transform.Rotate(new Vector3(0, 0, -vel.x / 6 * timeScale));
+        //player.transform.Rotate(new Vector3(0, 0, -vel.x / 6));
+        player.transform.Rotate(new Vector3(0, 0, -vel.x * 180 / halfCirc * timeScale * Time.deltaTime));
+
         if (vel.x > topSpeed) topSpeed = vel.x;
 
         //Move NPCs
         for (int i = 0; i < 5; i++)
         {
+            //sliders[i].transform.Translate(new Vector2(-vel.x / 60, 0));
             sliders[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale, 0));
             if (sliders[i].transform.position.x < despawn.position.x)
             {
@@ -439,40 +447,19 @@ public class LevelControl : MonoBehaviour
             }
         }
 
-        //Move Environment
-        for (int i = 0; i < 4; i++)
-        {
-            bg1[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale * bgSpeedMult[0], 0));
-            if (bg1[i].transform.position.x < -15)
-            {
-                bg1[i].transform.Translate(new Vector2(32, 0));
-            }
-            bg2[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale * bgSpeedMult[1], 0));
-            if (bg2[i].transform.position.x < -15)
-            {
-                bg2[i].transform.Translate(new Vector2(32, 0));
-            }
-            bg3[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale * bgSpeedMult[2], 0));
-            if (bg3[i].transform.position.x < -15)
-            {
-                bg3[i].transform.Translate(new Vector2(32, 0));
-            }
-            bg4[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale * bgSpeedMult[3], 0));
-            if (bg4[i].transform.position.x < -15)
-            {
-                bg4[i].transform.Translate(new Vector2(32, 0));
-            }
-            bg5[i].transform.Translate(new Vector2(-vel.x / 60 * timeScale * bgSpeedMult[4], 0));
-            if (bg5[i].transform.position.x < -15)
-            {
-                bg5[i].transform.Translate(new Vector2(32, 0));
-            }
-        }
-
         //React Player
         if (player.transform.position.y < 0)
         {
             player.transform.SetPositionAndRotation(spawn.transform.position, player.transform.rotation);
+            //for (int i = 0; i < sliders.Length; i++)
+            //{
+            //    if (Vector3.Distance(player.transform.position, sliders[i].transform.position) < 2)
+            //    {
+            //        Contact(sliders[i].GetComponent<NPCSlider>());
+            //        return;
+            //    }
+            //}
+
             vel = Vector2.Reflect(vel, Vector2.up);
             if (glides <= 0)
             {
@@ -493,21 +480,27 @@ public class LevelControl : MonoBehaviour
                 specialReady[2] = false;
             }
         }
-        if (vel.x < 0) vel.x = 0;
+        if (vel.x < 0)
+            vel.x = 0;
         if (vel.sqrMagnitude < minVel.sqrMagnitude && player.transform.position.y < gravity)
         {
             GameOver();
         }
+        //distance += vel.x / 60;
         distance += vel.x / 60 * timeScale;
         if (player.transform.position.y > clickRangeMin && player.transform.position.y < clickRangeMax)
         {
+            //if (difficulty == Difficulty.Easy) downForcePercent += rechargeEasy;
             if (difficulty == Difficulty.Easy) downForcePercent += rechargeEasy * timeScale;
+            //else if (difficulty == Difficulty.Medium) downForcePercent += rechargeNormal;
             else if (difficulty == Difficulty.Medium) downForcePercent += rechargeNormal * timeScale;
+            //else downForcePercent += rechargeHard;
             else downForcePercent += rechargeHard * timeScale;
             if (downForcePercent >= 1) downForcePercent = 1;
         }
         if (blocking)
         {
+            //distToBlockSp -= vel.x / 60;
             distToBlockSp -= vel.x / 60 * timeScale;
             if (distToBlockSp < 0)
             {
@@ -837,7 +830,7 @@ public class LevelControl : MonoBehaviour
     {
         float oldScale = timeScale;
         timeScale = speed;
-        yield return new WaitForSeconds(dura);
+        yield return new WaitForSecondsRealtime(dura);
         timeScale = oldScale;
     }
 
@@ -854,5 +847,10 @@ public class LevelControl : MonoBehaviour
     public void OnQuit()
     {
         Application.Quit();
+    }
+
+    public void OnReload()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

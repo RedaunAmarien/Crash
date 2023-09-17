@@ -5,11 +5,12 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     NPCSlider info;
-    public GameObject levelController;
+    [SerializeField] LevelControl levelController;
 
-    void OnTriggerEnter2D(Collider2D other) {
-        info = other.GetComponent<NPCSlider>();
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        info = other.GetComponentInParent<NPCSlider>();
         // Debug.Log("Hit " + info.charName + "\n" + info.forceAdd + "\n" + info.forceMult);
-        levelController.GetComponent<LevelControl>().Contact(info);
+        levelController.Contact(info);
     }
 }

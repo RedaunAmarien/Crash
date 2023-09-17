@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 076eafb3c84bf7941b410ecca9ff7df2, type: 3}
   m_Name: 9
   m_EditorClassIdentifier: 
-  charName: Grease
+  charName: Sintel
   forceAdd: {x: 1, y: 1}
   forceMult: {x: 1, y: 1}
   specialForceAdd: {x: 0, y: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   forceAdd: {x: 6, y: 4}
   forceMult: {x: 1, y: 1}
   specialForceAdd: {x: 20, y: 8}
-  specialForceMult: {x: 1.2, y: 1.1}
+  specialForceMult: {x: 1.25, y: 1.1}
   timeSpeed: 0.05
   timeDura: 0.5
   timeSpeedSpecial: 0
